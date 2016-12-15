@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import <JSPatchPlatform/JSPatch.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +19,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+//    [JSPatch testScriptInBundle]; // 把main.js文件放到本地用于测试
+    [JSPatch startWithAppKey:@"4461544987deb0c4"]; // 调用JSPatch后台配置的main.js
+    [JSPatch sync];
+    
+    
+    ViewController *vc = [[ViewController alloc]init];
+    vc.title = @"JSPath Demo";
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    self.window.rootViewController = nav;
     return YES;
 }
 
